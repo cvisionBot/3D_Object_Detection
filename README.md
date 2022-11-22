@@ -1,15 +1,13 @@
-# 3D_Pose_Estimation
-Efficient Pose 방식으로 PyTorch, PyTorch_Lightning framework 사용하여 3D Pose Estimation 진행하는 프로젝트입니다.
+# 3D Object Detection
+PyTorch, PyTorch_Lightning framework 사용하여 3D Object Detection을 진행하는 프로젝트입니다.
 
 ## Implementations
-
-- Efficient Pose
 - Data (Prepare)
-- Data Augmentations (Albumentations)
 - Multi GPU Training
 
 ## 프로젝트 구조
 '''
+├─ dataset
 ├─ .gitignore
 ├─ __README.md
 
@@ -44,3 +42,12 @@ Train 스크립트 실행 시 입력되는 CFG 파일로 하이퍼파라미터 �
     save_dir : './saved'
     workers: 8
     ...
+
+## TODOs
+- Data Generator
+- Data Augmentation (3D)
+- EfficientDet Architecture
+- Triple IoU Loss
+- Inference
+- Deployment를 위한 ONNX Conversion Script, Torch Script 추가
+- QAT, Grad Clip, SWA, FP16 등 학습 기법 추가 및 테스트
