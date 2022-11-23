@@ -64,3 +64,20 @@ class DepthwiseConvBn(nn.Module):
         output = self.conv(input)
         output = self.bn(output)
         return output
+
+
+class DepthwiseSepConvBnAct(nn.Module):
+    def __init__(self, in_channels, out_channels, kernel_size, stride, dilation=1, padding_mode='zeros'):
+        super(DepthwiseSepConvBnAct, self).__init__()
+        self.padding = getPadding(kernel_size)
+        self.depthwise = nn.Conv2d(in_channels, in_channels, kernel_size, stride, self.padding, dilation, in_channels, False, padding_mode)
+        self.pointwise = nn.Conv2d(in_channels, out_channels, 1, 1, self.padding, 1, 1, False, padding_mode)
+        self.bn = nn.BatchNorm2d(out_channels)
+        self.act = nn.ReLU()
+
+    def forward(self, input):
+        output = self.depthwise(input)
+        output = self.pointwise(output)
+        output = self.bn(output)
+        output = self.act(output)
+        return output
