@@ -19,6 +19,7 @@ class _EfficientNetB0(nn.Module):
     def __init__(self, in_channels, classes):
         super(_EfficientNetB0, self).__init__()
         self.stem = _EfficientStem(in_channels=in_channels, out_channels=32)
+        self.stage_channels = [40, 80, 320]
         # layer configs about EfficientDet
         # Block_idx, in_channels, kernel_size, out_channels, stride
         layer1 = [[1, 32, 3, 16, 1], [6, 16, 3, 24, 1], [6, 24, 3, 24, 2]]
